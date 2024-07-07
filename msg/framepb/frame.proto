@@ -1,0 +1,46 @@
+// Copyright 2020 newtbig Author. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//	http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./framepb";
+
+option cc_generic_services = true;
+option java_generic_services = true;
+option py_generic_services = true;
+
+message Msg {
+	uint32 Seq=1;
+	uint32 ID=2;
+	bytes  Body=3;
+	uint64 Key=4;
+	uint64 UID=5;
+}
+
+message ServiceInfo {
+	repeated ServiceStatus sers = 1;
+}
+
+message ServiceStatus {
+	string name=1;
+	repeated bytes status = 2;
+}
+
+message Status {
+	string Key=1;
+	string Addr=2;
+	uint32 Count=3;
+	uint32 Weight=4;
+}

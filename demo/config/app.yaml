@@ -1,0 +1,49 @@
+app:
+  name: "test"
+  runMode: debug # release
+  version: 2001
+  configPath: config/
+  msgPath: msg/sproto/all.json
+  logPath: logs/
+  logFile: apps
+  timeFormat:  20060102
+  serverType: "app" 
+  serverName: "app1"
+  ip: 0.0.0.0
+  ipOut: 192.168.0.105
+  port: 8002
+  portRpc: 9002
+  conTypes:
+    - "app"
+    - "gate"
+    - "login"
+  etcd:
+    Hosts:
+      - "http://192.168.0.105:2379"
+    Url: "http://192.168.0.105:2379"
+
+  nats:
+    Hosts:
+      - "nats:rg1q2w3e@192.168.0.105:4242"
+    Url: ""
+    
+
+redis:
+  addr: "192.168.0.107:6479"
+  password: "123456"
+  DB: 6
+  poolSize: 30
+  minIdleConns: 30
+
+database:
+  type: mysql
+  user: root
+  password: 123456
+  host:  192.168.0.107:3308
+  name:  newtbig
+  tablePrefix: newtbig_
+
+
+
+
+
