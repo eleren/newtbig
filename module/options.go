@@ -199,3 +199,33 @@ func HBBack(t bool) Option {
 		o.HBBack = t
 	}
 }
+
+func MaxConn(t int32) Option {
+	return func(o *Options) {
+		o.MaxConn = t
+	}
+}
+
+func MaxPacketSize(t int64) Option {
+	return func(o *Options) {
+		o.MaxPacketSize = t
+	}
+}
+
+func HeartBeatInterval(t int64) Option {
+	return func(o *Options) {
+		o.HeartBeatInterval = t
+	}
+}
+
+func RpmLimit(t uint32) Option {
+	return func(o *Options) {
+		o.RpmLimit = t
+	}
+}
+
+func MaxMsgChanLen(t uint32) Option {
+	return func(o *Options) {
+		o.MaxMsgChanLen = t
+	}
+}

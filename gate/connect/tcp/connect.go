@@ -87,6 +87,9 @@ func (c *Connect) OnSend(d []byte) error {
 	}
 	c.conn.SetWriteDeadline(time.Now().Add(c.writeDeadline))
 	sz := len(d)
+	if sz+int(c.headSize) > int(c.opts.MaxPacketSize) || sz <= 0 {
+		return fmt.Errorf("Connect %s send data size :%d err", c.OnString(), sz)
+	}
 	if c.headSize == 2 {
 		c.byteOrder.PutUint16(c.cache, uint16(sz))
 	} else {
@@ -124,7 +127,7 @@ func (c *Connect) OnReceive() (*pb.Msg, error) {
 	}
 
 	if size+int(c.headSize) > int(c.opts.MaxPacketSize) || size <= 0 {
-		return nil, fmt.Errorf("Connect %s data size :%d err", c.OnString(), size)
+		return nil, fmt.Errorf("Connect %s receive data size :%d err", c.OnString(), size)
 	}
 
 	cache := make([]byte, size)

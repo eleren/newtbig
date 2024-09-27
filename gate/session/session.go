@@ -148,7 +148,7 @@ func (s *Session) SendMsg(msg *framepb.Msg) error {
 	msg.UID = s.userId
 	data, err := s.opts.Process.Marshal(msg)
 	if err != nil {
-		log.Logger.Errorf("session :%d marshal err :%s ", s.GetUID(), err.Error())
+		log.Logger.Warnf("session :%d marshal err :%s ", s.GetUID(), err.Error())
 		return err
 	}
 	utils.Put(msg)
