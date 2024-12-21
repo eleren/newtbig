@@ -1,0 +1,35 @@
+app:
+  name: "test"
+  runMode: debug #release
+  version: 2001
+  configPath: config/
+  msgPath: msg/sproto/all.json
+  logPath: logs/
+  logFile: apps
+  timeFormat:  20060102
+  netType: "http" 
+  serverType: "login"
+  serverName: "login_1"
+  ip: 0.0.0.0
+  ipOut: 192.168.0.105
+  port: 8081
+  conTypes:
+    - "gate"
+    - "app"
+    - "login"
+  etcd:
+    Hosts:
+      - "http://192.168.0.105:2379"
+    Url: "http://192.168.0.105:2379"
+
+  nats:
+    Hosts:
+      - "nats:rg1q2w3e@192.168.0.105:4242"
+    Url: ""
+
+
+
+
+
+
+

@@ -1,37 +1,42 @@
-# newtbig
 
 #### 介绍
-newtbig是一个基于 Golang 实现的服务器开发框架，旨在帮助开发者快速构建高可用、高并发、低耦合、负载均衡、动态伸缩，支持百万在线的服务器。
 
-#### 软件架构
-软件架构说明
+newtbig是一个基于 Golang 实现的服务器开发框架，旨在帮助开发者快速构建高可用、高并发、低耦合、负载均衡、动态伸缩，支持百万在线的服务器。使开发者能够专注于业务逻辑的实现，而无需关心底层的技术细节，轻松实现百万用户在线的服务器。
 
 
-#### 安装教程
+#### 宗旨
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+简单，粗暴，好用
 
 
-#### 特技
+#### 特性
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. 高可用性
+
+    内置了服务发现、容错处理、负载均衡等机制，确保服务的稳定性和可用性。
+
+2. 高并发性
+
+    基于golang高并发特性，对网络通信，协程，通道，内存池等合理使用，实现高并发。
+
+3. 低耦合性
+
+    采用微服务架构，基于nats实现服务间rpc，将系统拆分为多个独立的服务，降低服务之间的耦合度。
+
+4. 负载均衡
+
+    采用一致性hash负载均衡策略，根据服务状态动态调整流量分配，实现服务的横向扩展。
+
+5. 动态伸缩
+
+    框架支持自动伸缩机制，根据服务负载和性能指标动态调整服务实例的数量。
+
+6. 扩展性
+
+    框架支持tcp，websocket等多种网络协议，可自定义网络封包，根据实际需求进行扩展。
+
+
+#### 架构
+
+
+![输入图片说明](demo/nb.jpg)
