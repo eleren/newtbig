@@ -98,9 +98,9 @@ func NewNatsClient(app module.App) (*NatsClient, error) {
 }
 
 func (nc *NatsClient) Init() {
-	nc.callBack = make(chan *framepb.Msg, 131072)
-	nc.msg_send_chan = make(chan *StreamMsg, 131072)
-	nc.msg_receive_chan = make(chan *StreamMsg, 131072)
+	nc.callBack = make(chan *framepb.Msg, nc.opts.QMsgLen)
+	nc.msg_send_chan = make(chan *StreamMsg, nc.opts.QMsgLen)
+	nc.msg_receive_chan = make(chan *StreamMsg, nc.opts.QMsgLen)
 	nc.done = make(chan struct{})
 	nc.root = fmt.Sprintf("%s.%s", nc.opts.AppName, nc.opts.ServerType)
 	nc.key = fmt.Sprintf("%s.%s", nc.root, nc.opts.ServerName)

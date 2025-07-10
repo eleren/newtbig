@@ -55,6 +55,7 @@ func newOptions(opts ...module.Option) module.Options {
 		DisLen:            10000,
 		DisRep:            5,
 		HBBack:            false,
+		QMsgLen:           10000,
 	}
 
 	for _, o := range opts {
@@ -116,21 +117,25 @@ func newOptions(opts ...module.Option) module.Options {
 		}
 	}
 
-	opt.ETCDHosts = viper.GetStringSlice("app.etcd.Hosts")
+	opt.ETCDHosts = viper.GetStringSlice("app.etcd.hosts")
 	if len(opt.ETCDHosts) == 0 {
 		panic("etcd config err: hosts is nil   \n")
 	}
 
-	opt.NatsHosts = viper.GetStringSlice("app.nats.Hosts")
+	opt.NatsHosts = viper.GetStringSlice("app.nats.hosts")
 	if len(opt.NatsHosts) == 0 {
 		panic("nats config err: hosts is nil  \n ")
 	}
 
 	opt.ETCDUser = viper.GetString("app.etcd.user")
 	opt.ETCDPassword = viper.GetString("app.etcd.pwd")
-	tlsFile := viper.GetString("app.etcd.tlsFile")
-	if tlsFile != "" {
-		opt.ETCDTLSFile = fmt.Sprintf("%s/config/tls/%s", opt.WorkDir, tlsFile)
+	certFile := viper.GetString("app.etcd.certFile")
+	if certFile != "" {
+		opt.ETCDCertFile = fmt.Sprintf("%s/config/tls/%s", opt.WorkDir, certFile)
+	}
+	keyFile := viper.GetString("app.etcd.keyFile")
+	if keyFile != "" {
+		opt.ETCDKeyFile = fmt.Sprintf("%s/config/tls/%s", opt.WorkDir, keyFile)
 	}
 
 	opt.AppName = viper.GetString("app.name")
@@ -148,6 +153,10 @@ func newOptions(opts ...module.Option) module.Options {
 	disRep := viper.GetUint32("app.disRep")
 	if disRep > 0 {
 		opt.DisRep = disRep
+	}
+	qMsgLen := viper.GetUint32("app.qMsgLen")
+	if qMsgLen > 0 {
+		opt.QMsgLen = qMsgLen
 	}
 	if opt.RunMode == "debug" {
 		opt.Debug = true

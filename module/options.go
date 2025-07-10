@@ -35,7 +35,8 @@ type Options struct {
 	ETCDHosts         []string
 	ETCDUser          string
 	ETCDPassword      string
-	ETCDTLSFile       string
+	ETCDCertFile      string
+	ETCDKeyFile       string
 	NetType           string
 	ServerType        string
 	ServerName        string
@@ -64,6 +65,7 @@ type Options struct {
 	DisLen            uint32
 	DisRep            uint32
 	HBBack            bool
+	QMsgLen           uint32
 }
 
 func Version(v string) Option {
@@ -227,5 +229,11 @@ func RpmLimit(t uint32) Option {
 func MaxMsgChanLen(t uint32) Option {
 	return func(o *Options) {
 		o.MaxMsgChanLen = t
+	}
+}
+
+func QMsgLen(t uint32) Option {
+	return func(o *Options) {
+		o.QMsgLen = t
 	}
 }

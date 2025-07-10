@@ -133,9 +133,10 @@ func (app *DefaultApp) OnInit() error {
 	hostname, _ := os.Hostname()
 	app.opts.HostName = hostname
 	app.opts.PID = fmt.Sprintf("%v", os.Getpid())
-	log.Logger.Debug("etcd init :", app.Options().ETCDHosts)
+	log.Logger.Debug("etcd init host:", app.Options().ETCDHosts)
+	log.Logger.Debug("etcd init tls:", app.Options().ETCDCertFile, app.Options().ETCDKeyFile)
 	app.etcdClient = &etcdclient.ETCDClient{}
-	err := app.etcdClient.Init(app.Options().ETCDHosts, app.Options().ETCDTLSFile)
+	err := app.etcdClient.Init(app.Options().ETCDHosts, app.Options().ETCDCertFile, app.Options().ETCDKeyFile)
 	if err != nil {
 		return err
 	}

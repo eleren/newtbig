@@ -28,20 +28,25 @@ type ETCDClient struct {
 	client *clientv3.Client
 }
 
-func (ec *ETCDClient) Init(host []string, tlsFile string) error {
+func (ec *ETCDClient) Init(host []string, certFile, keyFile string) error {
 	ec.config = clientv3.Config{
 		Endpoints:   host,
 		DialTimeout: 5 * time.Second,
 	}
 
-	if tlsFile != "" {
-		certPem, err := os.ReadFile(tlsFile)
+	if certFile != "" && keyFile != "" {
+		certPem, err := os.ReadFile(certFile)
 		if err != nil {
-			log.Logger.Errorf("etcd init file err : %s", err.Error())
+			log.Logger.Errorf("etcd init cert file err : %s", err.Error())
+			return err
+		}
+		keyPem, err := os.ReadFile(keyFile)
+		if err != nil {
+			log.Logger.Errorf("etcd init key file err: %s", err.Error())
 			return err
 		}
 
-		cert, err1 := tls.X509KeyPair(certPem, nil)
+		cert, err1 := tls.X509KeyPair(certPem, keyPem)
 		if err1 != nil {
 			log.Logger.Errorf("etcd init cer err : %s", err1.Error())
 			return err1
